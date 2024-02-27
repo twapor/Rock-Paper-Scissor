@@ -11,11 +11,35 @@ body {
     max-width: 100px;
 }
 
+#result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+
 #wrapper {
     display: flex;
     justify-content: center;
-    margin-top: 100px;
 }
 
 #control-panel {
+    background-color: #051431;
+    display: flex;
+    width: 300px;
+    height: 100px;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 10px #64646436;
+}
+
+button {
+    max-width: 100px;
+    max-height: 25px;
+    font-family: "Poppins", sans-serif;
 }
