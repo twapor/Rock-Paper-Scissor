@@ -10,6 +10,9 @@ const roundResultContainer = document.querySelector('#result-round');
 const scores = document.createElement('p');
 scores.setAttribute('style', 'white-space: pre;');
 const scoresContainer = document.querySelector('#score');
+scores.textContent = `0    -    0\r\n`;
+scores.textContent += `You   CPU`;
+scoresContainer.appendChild(scores);
 const gameResult = document.createElement('p');
 const gameResultContainer = document.querySelector('#result-game');
 const reset = document.createElement('button');
@@ -20,6 +23,24 @@ reset.addEventListener('click', restart);
 let playerScore = 0;
 let computerScore = 0;
 const choices = ['rock', 'paper', 'scissor'];
+
+function checkScore(){
+    if (playerScore == 5){
+        gameResult.textContent = `Congratulation you Won!`
+        gameResultContainer.appendChild(gameResult);
+        roundResultContainer.removeChild(roundResult);
+        gameResultContainer.appendChild(reset);
+    }
+    else if (computerScore == 5){
+        gameResult.textContent = `CPU won, better luck next time`
+        gameResultContainer.appendChild(gameResult);
+        roundResultContainer.removeChild(roundResult);
+        gameResultContainer.appendChild(reset);
+    }
+    else {
+        
+    }
+}
 
 
 function geteEmoji(choice){
@@ -65,8 +86,6 @@ function playRound(computerSelection, playerSelection) {
         roundResultContainer.appendChild(roundResult);
         scores.textContent = `${playerScore}    -    ${computerScore}\r\n`;
         scores.textContent += `You   CPU`;
-        scoresContainer.appendChild(scores);
-        console.log('You selected: ' + playerSelection + ' - Computer selected: ' + computerSelection + `\nIt's a tie!`);
     }
     else if (
         (computerSelection == 'rock' && playerSelection == 'paper') ||
@@ -75,12 +94,9 @@ function playRound(computerSelection, playerSelection) {
         ) {
             roundResult.textContent = `${playerEmoji} vs ${computerEmoji} \r\n`;
             roundResult.textContent += `You Won`;
-            roundResultContainer.appendChild(roundResult);
-            console.log('You selected: ' + playerSelection + ' - Computer selected: ' + computerSelection + `\nYou Win!`);
             playerScore += 1;
             scores.textContent = `${playerScore}    -    ${computerScore}\r\n`;
             scores.textContent += `You   CPU`;
-            scoresContainer.appendChild(scores);
         }
     else if (
         (computerSelection == 'rock' && playerSelection == 'scissor') ||
@@ -91,29 +107,18 @@ function playRound(computerSelection, playerSelection) {
         roundResult.textContent += `You Lost!`;
         const roundResultContainer = document.querySelector('#result-round');
         roundResultContainer.appendChild(roundResult);
-        console.log('You selected: ' + playerSelection + ' - Computer selected: ' + computerSelection + `\nYou Lose!`);
         computerScore += 1;
         scores.textContent = `${playerScore}    -    ${computerScore}\r\n`;
         scores.textContent += `You   CPU`;
-        scoresContainer.appendChild(scores);
     }
 }
 
 function playGame(btnSelected) {
         if(playerScore < 5 && computerScore < 5){
             playRound(getComputerChoice(), getPlayerChoice(btnSelected));
-            console.log('Score: \n' + 'You: ' + playerScore + ' - Computer: ' + computerScore);
+            checkScore();
         }
-        else if (playerScore == 5) {
-            gameResult.textContent = `Congratulation you Won!`
-            gameResultContainer.appendChild(gameResult);
-            roundResultContainer.removeChild(roundResult);
-            gameResultContainer.appendChild(reset);
-        }
-        else if (computerScore == 5) {
-            gameResult.textContent = `CPU won, better luck next time`;
-            gameResultContainer.appendChild(gameResult);
-            roundResultContainer.removeChild(roundResult);
-            gameResultContainer.appendChild(reset);
+        else {
+            checkScore();
         }
 }
