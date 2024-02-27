@@ -1,3 +1,10 @@
+const btnRock = document.querySelector('#rock');
+const btnPaper = document.querySelector('#paper');
+const btnScissor = document.querySelector('#scissor');
+
+
+
+
 let playerScore = 0;
 let computerScore = 0;
 const choices = ['rock', 'paper', 'scissor'];
