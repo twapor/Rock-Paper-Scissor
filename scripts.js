@@ -10,7 +10,6 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-    const playerPick = prompt('Please choose: rock, paper or scissor');
     playerChoice = playerPick.toLowerCase(); 
     return playerChoice;
 }
